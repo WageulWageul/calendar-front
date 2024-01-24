@@ -1,10 +1,11 @@
 import './App.css';
-import Calender from './comp/calender/Calender';
+import Home from './comp/home/Home';
+import '././index.css';
 
 function App() {
   return (
     <div className="App">
-      <Calender></Calender>
+      <Home></Home>
     </div>
   );
 }
