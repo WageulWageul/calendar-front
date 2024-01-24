@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import CalenderHeader from './CalenderHeader';
-import CalenderDetail from './CalenderDetail';
+import Calendar from './Calendar';
 import { ReactComponent as Plus } from '../../assets/icon/Plus.svg';
 
 
@@ -12,8 +11,6 @@ const Wrapper = styled.div`
     background-color:#E3E3E3`;
 
 const InnerWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
     width:100%;
     border-radius : 3em;
     background-color:#ffffff;
@@ -32,16 +29,17 @@ const PlusButton = styled.div`
     border-radius : 50%;
     `;
 
-function Calender(props) {
+function Home(props) {
     return (
         <Wrapper>
             <InnerWrapper>
-                <CalenderHeader></CalenderHeader>
-                <CalenderDetail></CalenderDetail>
+                <Calendar></Calendar>
             </InnerWrapper>
-            <PlusButton><Plus/></PlusButton>
+            <PlusButton>
+                <Plus/>
+            </PlusButton>
         </Wrapper>
     )
 }
 
-export default Calender;
+export default Home;
