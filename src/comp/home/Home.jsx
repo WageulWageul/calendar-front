@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Calendar from './Calendar';
 import { ReactComponent as Plus } from '../../assets/icon/Plus.svg';
+import TodoCreate from '../todo/TodoCreate';
+
 
 
 const Wrapper = styled.div`
@@ -30,15 +32,27 @@ const PlusButton = styled.div`
     `;
 
 function Home(props) {
+
+    const [setPlus, setPlusTodo] = useState(null);
+
+    const handlePlus = (Component) => {
+        setPlusTodo(Component);
+      };
+
+     const renderTodoPlus= () => {
+        return setPlus;
+      };
+    
+
     return (
         <Wrapper>
+            {renderTodoPlus()}
             <InnerWrapper>
                 <Calendar></Calendar>
             </InnerWrapper>
-                <PlusButton>
+            <PlusButton onClick={() => handlePlus(<TodoCreate/>)}>
                 <Plus/>
             </PlusButton>
-    
         </Wrapper>
     )
 }
