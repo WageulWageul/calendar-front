@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 
-const LogInStyle = {
+const LoginStyle = {
     container: {
         display: 'flex',
         alignItems: 'center',
@@ -47,4 +46,4 @@ const LogInStyle = {
     }
 };
 
-export default LogInStyle;
+export default LoginStyle;

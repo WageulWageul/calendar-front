@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import LogInStyle from "./LogInStyle";
-import { ReactComponent as Mascot} from "assets/img/Profile.svg";
-import { ReactComponent as Kakao} from "assets/img/kakao.svg";
-import { ReactComponent as Naver} from "assets/img/naver.svg";
+import LoginStyle from "./LoginStyle.jsx";
+import { Link } from "react-router-dom";
+import { ReactComponent as Mascot} from "../../assets/img/Mascot.svg";
+import { ReactComponent as Kakao} from "../../assets/img/kakao.svg";
+import { ReactComponent as Naver} from "../../assets/img/naver.svg";
 
-function Log(props) {
+function Login(props) {
     const [userData, setUserData] = useState([]);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -30,21 +31,21 @@ function Log(props) {
         console.log({userData});
     };
 
-    const handlekakaoLogIn = (e) => {
+    const handlekakaoLogin = (e) => {
         //처리
     };
-    const handlenaverLogIn = (e) => {
+    const handlenaverLogin = (e) => {
         //처리
     };
 
     return (
-        <div style={LogInStyle.container}>
-            <div style={LogInStyle.imageContainer}>
-                <Mascot style={LogInStyle.image} ></Mascot>
+        <div style={LoginStyle.container}>
+            <div style={LoginStyle.imageContainer}>
+                <Mascot style={LoginStyle.image} ></Mascot>
             </div>
-            <div style={LogInStyle.textContainer}>
-                <h1 style={LogInStyle.textStyle}>Welcome!</h1>
-                <p style={LogInStyle.textStyle}>로그인하는데 필요한 정보를 입력해주세요!</p>
+            <div style={LoginStyle.textContainer}>
+                <h1 style={LoginStyle.textStyle}>Welcome!</h1>
+                <p style={LoginStyle.textStyle}>로그인하는데 필요한 정보를 입력해주세요!</p>
 
                 <form onSubmit={onSubmit}>
                     <label>
@@ -52,7 +53,7 @@ function Log(props) {
                             type="text" 
                             value={name} 
                             onChange={onChangeName}
-                            style={LogInStyle.formDesign}
+                            style={LoginStyle.formDesign}
                         />
                     </label>
                     <br />
@@ -61,29 +62,31 @@ function Log(props) {
                             type="text" 
                             value={email} 
                             onChange={onChangeEmail}
-                            style={LogInStyle.formDesign}
+                            style={LoginStyle.formDesign}
                         />
                     </label>
                     <br />
                     <button 
-                        onClick= {handlekakaoLogIn}
-                        style={{...LogInStyle.snsButton, color: 'black', backgroundColor: '#FEE500', marginRight:'10px'}}>
+                        onClick= {handlekakaoLogin}
+                        style={{...LoginStyle.snsButton, color: 'black', backgroundColor: '#FEE500', marginRight:'10px'}}>
                             <Kakao style={{float: 'left'}}></Kakao>
                             카카오 로그인</button>
                     <button 
-                        onClick={handlenaverLogIn}
-                        style={{...LogInStyle.snsButton, color: 'white', backgroundColor: '#03C75A'}}>
+                        onClick={handlenaverLogin}
+                        style={{...LoginStyle.snsButton, color: 'white', backgroundColor: '#03C75A'}}>
                             <Naver style={{float: 'left'}}></Naver>
                             네이버 로그인</button>
 
                     <br />
+                    <Link to='/'>
                     <div style={{textAlign: 'right'}}>
                         <button 
                             type="submit"
-                            style={{...LogInStyle.logInButton, color: 'white', fontSize: '20px'}}
+                            style={{...LoginStyle.logInButton, color: 'white', fontSize: '20px'}}
                             >로그인
                         </button>
                     </div>
+                    </Link>
                 </form>
                 <hr style={{color: '#ECECF0'}}/>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -95,4 +98,4 @@ function Log(props) {
     );
 }
 
-export default Log;
+export default Login;

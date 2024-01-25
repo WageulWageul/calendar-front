@@ -35,9 +35,10 @@ function Home(props) {
             <InnerWrapper>
                 <Calendar></Calendar>
             </InnerWrapper>
-            <PlusButton>
+                <PlusButton>
                 <Plus/>
             </PlusButton>
+    
         </Wrapper>
     )
 }
