@@ -12,12 +12,15 @@ const Container = styled.div`
 
   @media screen and (max-width:768px){
     flex-direction: column;
-    
   }
 `;
 
 const ImageContainer = styled.div`
   margin-left: 10px;
+  flex: 1.5;
+  @media screen and (max-width:1200px){
+    flex: 1;
+  }
   @media screen and (max-width:768px){
     display: flex;
     align-items: center; /* 수직 중앙 정렬 */
@@ -27,7 +30,6 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled(Mascot)`
-  
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -38,12 +40,18 @@ const Image = styled(Mascot)`
 `;
 
 const TextContainer = styled.div`
-  max-width : 100%;
+  flex:1;
+  padding: 5em;
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  @media screen and (max-width:1200px){
+    flex:1.5;
+  }
 `;
 
 const FormInput = styled.input`
   height: 60px;
-  width: 400px;
+  width: 90%;
   background-color: #f5f5f7;
   margin-bottom: 30px;
   border-radius: 10px;
@@ -55,7 +63,7 @@ const TextStyle = styled.h1`
 `;
 
 const LogInButton = styled.button`
-  width: 150px;
+  width: 35%;
   height: 67px;
   background-color: #007dfa;
   margin-bottom: 30px;
@@ -63,13 +71,15 @@ const LogInButton = styled.button`
   border: none;
   color: white;
   font-size: 20px;
+  margin-right: 10%;
+
   @media screen and (max-width:768px){
     width: 400px;
   }
 `;
 
 const SNSButton = styled.button`
-  width: 195px;
+  width: 44%;
   height: 54px;
   margin-bottom: 30px;
   border-radius: 5px;
@@ -145,22 +155,22 @@ function Login(props) {
           </SNSButton>
           <SNSButton
             onClick={handleNaverLogin}
-            style={{ backgroundColor: '#03C75A' }}
+            style={{ backgroundColor: '#03C75A', color: '#ffffff' }}
           >
             <Naver style={{ float: 'left' }} />
             네이버 로그인
           </SNSButton>
           <br />
           <Link to="/">
-            <div style={{ textAlign: 'right' }}>
+            <div style={{textAlign: 'right'}} >
               <LogInButton type="submit">로그인</LogInButton>
             </div>
           </Link>
         </form>
-        <hr style={{ color: '#ECECF0' }} />
+        <hr style={{ color: '#ECECF0',  marginRight: '10%' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ textAlign: 'left', color: '#2F3367' }}>아이디가 없으신가요</p>
-          <p style={{ textAlign: 'right', color: '#007DFA' }}>회원가입하기!</p>
+          <p style={{ textAlign: 'right', color: '#007DFA', marginRight: '10%' }}>회원가입하기!</p>
         </div>
       </TextContainer>
     </Container>
