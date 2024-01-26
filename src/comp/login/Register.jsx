@@ -5,6 +5,7 @@ import { ReactComponent as Kakao } from '../../assets/img/kakao.svg';
 import { ReactComponent as Naver } from '../../assets/img/naver.svg';
 
 
+
 function Register(props) {
     const [userData, setUserData] = useState([]);
     const [name, setName] = useState('');
@@ -102,10 +103,10 @@ function Register(props) {
                     </div>
                     
                 </form>
-                <hr style={{color: '#ECECF0'}}/>
+                <hr style={{color: '#ECECF0' ,marginRight:'10%'}}/>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <p style={{ textAlign: 'left', color: '#2F3367' }}>이미 아이디가 있으신가요?</p>
-                    <Link to='/login' style={{ textDecoration: "none"}}>
+                    <Link to='/login' style={{ textDecoration: "none" ,marginRight:'10%'}}>
                     <p style={{ textAlign: 'right', color: '#007DFA' }}>로그인하기!</p>
                     </Link>
                     </div>

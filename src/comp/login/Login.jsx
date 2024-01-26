@@ -5,6 +5,7 @@ import { ReactComponent as Kakao } from '../../assets/img/kakao.svg';
 import { ReactComponent as Naver } from '../../assets/img/naver.svg';
 
 
+
 function Login(props) {
   const [userData, setUserData] = useState([]);
   const [pw, setPw] = useState('');
@@ -76,9 +77,11 @@ const onSubmit = (e) => {
           </t.SNSButton>
           <t.SNSButton
             onClick={handleNaverLogin}
+
             style={{ backgroundColor: '#03C75A' ,color: '#ffffff'}}
           >
           <Naver style={{ float: 'left', }} />
+
             네이버 로그인
           </t.SNSButton>
           <br />
@@ -90,11 +93,11 @@ const onSubmit = (e) => {
             </div>
          
         </form>
-        <hr style={{ color: '#ECECF0' }} />
+        <hr style={{ color: '#ECECF0', marginRight: '10%' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ textAlign: 'left', color: '#2F3367' }}>아이디가 없으신가요</p>
-          <Link to='/register' style={{ textDecoration: "none"}}>
-          <p style={{ textAlign: 'right', color: '#007DFA' }}>회원가입하기!</p>
+          <Link to='/register' style={{ textDecoration: "none", marginRight:'10%'}}>
+          <p style={{ textAlign: 'right', color: '#007DFA'}}>회원가입하기!</p>
           </Link>
         </div>
       </t.TextContainer>
