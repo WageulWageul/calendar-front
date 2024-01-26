@@ -48,6 +48,7 @@ const FormInput = styled.input`
   margin-bottom: 30px;
   border-radius: 10px;
   border: none;
+  padding-left: 1em;
 `;
 
 const TextStyle = styled.h1`
@@ -79,29 +80,29 @@ const SNSButton = styled.button`
 
 function Login(props) {
   const [userData, setUserData] = useState([]);
-  const [name, setName] = useState('');
+  const [pw, setPw] = useState('');
   const [email, setEmail] = useState('');
-
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
-  };
+};
+const onChangePw = (e) => {
+    setPw(e.target.value);
+};
 
-  const onSubmit = (e) => {
+const onSubmit = (e) => {
     e.preventDefault();
-    setUserData((prevUserData) => [
-      ...prevUserData,
-      {
-        name: { name },
-        email: { email },
-      },
-    ]);
-    console.log({ userData });
-  };
-
+    setUserData((prevUserData) => {
+        return [
+            ...prevUserData,
+            {
+                email: {email},
+                pw: {pw},
+            },
+        ];
+    });
+    console.log({userData});
+};
   const handleKakaoLogin = (e) => {
     // 처리
   };
@@ -117,22 +118,24 @@ function Login(props) {
       </ImageContainer>
       <TextContainer>
         <TextStyle>Welcome!</TextStyle>
-        <p style={{ color: '#2F3367' }}>로그인하는데 필요한 정보를 입력해주세요!</p>
+        <p style={{ color: '#2F3367' }}>이메일과 비밀번호를 입력해주세요!</p>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>    
           <label>
             <FormInput
-              type="text"
-              value={name}
-              onChange={onChangeName}
+              placeholder="이메일"
+              type="text" 
+              value={email} 
+              onChange={onChangeEmail}
             />
           </label>
           <br />
           <label>
             <FormInput
-              type="text"
-              value={email}
-              onChange={onChangeEmail}
+              placeholder="비밀번호"
+              type="password" 
+              value={pw} 
+              onChange={onChangePw}
             />
           </label>
           <br />
@@ -145,22 +148,26 @@ function Login(props) {
           </SNSButton>
           <SNSButton
             onClick={handleNaverLogin}
-            style={{ backgroundColor: '#03C75A' }}
+            style={{ backgroundColor: '#03C75A' ,color: '#ffffff'}}
           >
-            <Naver style={{ float: 'left' }} />
+            <Naver style={{ float: 'left', }} />
             네이버 로그인
           </SNSButton>
           <br />
-          <Link to="/">
+
             <div style={{ textAlign: 'right' }}>
+            <Link to="/">
               <LogInButton type="submit">로그인</LogInButton>
+            </Link>
             </div>
-          </Link>
+         
         </form>
         <hr style={{ color: '#ECECF0' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ textAlign: 'left', color: '#2F3367' }}>아이디가 없으신가요</p>
+          <Link to='/register' style={{ textDecoration: "none"}}>
           <p style={{ textAlign: 'right', color: '#007DFA' }}>회원가입하기!</p>
+          </Link>
         </div>
       </TextContainer>
     </Container>
