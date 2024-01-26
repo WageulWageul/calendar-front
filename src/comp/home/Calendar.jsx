@@ -8,114 +8,6 @@ import { ReactComponent as RightMonth } from "../../assets/icon/Right.svg";
 import { ReactComponent as ProfileImg } from '../../assets/img/Profile.svg';
 import TodoCreate from '../todo/TodoCreate';
 
-
-function Calendar(props){
-const [getMoment, setMoment] = useState(moment())
-const [isYearScrollBarVisible, setYearScrollBarVisible] = useState(false);
-const [currentYear] = useState(getMoment.year()); 
-
-
-const today = getMoment
-const firstWeek = today.clone().startOf('month').week();
-const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
-const monthslist = Array.from({ length: 12 }, (_, index) => index + 1);
-
-
-const handleYearClick = () => {
-  setYearScrollBarVisible(prevState => !prevState);
-};
-
-const yearRange = Array.from({ length: 41 }, (_, index) => currentYear - 20 + index);
-
-const calendarArr=()=>{
-
-  let result = [];
-  let week = firstWeek;
-  for ( week; week <= lastWeek; week++) {
-    result = result.concat(
-      <tr key={week}>
-        {Array(7).fill(0).map((data, index) => {
-                let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');
-                if(moment().format('YYYYMMDD') === days.format('YYYYMMDD')){
-                  return(
-                      <td key={index} style={{color:'#ffffff', 
-                      borderRadius : '3em', backgroundColor : '#007DFA'}} >
-                        <span>{days.format('D')}</span>
-                      </td>
-                  );
-                }else if(days.format('MM') !== today.format('MM')){
-                  return(
-                      <td key={index}>
-                        <span style={{color:'silver'}}>{days.format('D')}</span>
-                      </td>
-                  );
-                }else{
-                  return(
-                      <td key={index}>
-                        <span>{days.format('D')}</span>
-                      </td>
-                  );
-                }
-              })
-        }
-      </tr>);
-  }
-  return result;
-}
-
-  return (
-    <>
-    <HeaderFrame>
-         <Year onClick={handleYearClick}>{today.format('YYYY년')}</Year>
-         <YearScrollBar visible={isYearScrollBarVisible}>
-                {yearRange.map((year) => (
-                    <YearOption onClick={() => { 
-                      setMoment(getMoment.clone().year(year));
-                    }}
-                    key={year}>
-                        {year}
-                    </YearOption>
-                ))}
-            </YearScrollBar>
-          <LeftMonth onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
-          <Month>{today.format('MM월')}</Month>
-          <RightMonth onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
-          <MonthList>
-            {monthslist.map((month) => (
-              <MonthButton 
-                onClick={() => { 
-                  setMoment(getMoment.clone().month(month - 1));
-                }}
-                key={month}
-              >
-                {month}
-              </MonthButton>
-            ))}
-          </MonthList>
-          <Link to='/login'>
-          <ProfileFrame>
-                <ProfileImg></ProfileImg>
-            </ProfileFrame>
-          </Link>
-        </HeaderFrame>
-
-      <Cal_Container>
-            <tr>
-              <th className='sun'><Day>일</Day></th>
-              <th><Day>월</Day></th>
-              <th><Day>화</Day></th>
-              <th><Day>수</Day></th>
-              <th><Day>목</Day></th>
-              <th><Day>금</Day></th>
-              <th className='sat'><Day>토</Day></th>
-            </tr>
-            {calendarArr()}
-      </Cal_Container>
-    </>
-  )
-}
-
-
 const Cal_Container = styled.table`
   width: 100%;
   text-align: center;  
@@ -224,5 +116,110 @@ const YearOption = styled.div`
     `;
 
 
+function Calendar(props){
+const [getMoment, setMoment] = useState(moment())
+const [isYearScrollBarVisible, setYearScrollBarVisible] = useState(false);
+const [currentYear] = useState(getMoment.year()); 
+
+
+const today = getMoment
+const firstWeek = today.clone().startOf('month').week();
+const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
+const monthslist = Array.from({ length: 12 }, (_, index) => index + 1);
+
+
+const handleYearClick = () => {
+  setYearScrollBarVisible(prevState => !prevState);
+};
+
+const yearRange = Array.from({ length: 41 }, (_, index) => currentYear - 20 + index);
+
+const calendarArr=()=>{
+
+  let result = [];
+  let week = firstWeek;
+  for ( week; week <= lastWeek; week++) {
+    result = result.concat(
+      <tr key={week}>
+        {Array(7).fill(0).map((data, index) => {
+                let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');
+                if(moment().format('YYYYMMDD') === days.format('YYYYMMDD')){
+                  return(
+                      <td key={index} style={{color:'#ffffff', 
+                      borderRadius : '3em', backgroundColor : '#007DFA'}} >
+                        <span>{days.format('D')}</span>
+                      </td>
+                  );
+                }else if(days.format('MM') !== today.format('MM')){
+                  return(
+                      <td key={index}>
+                        <span style={{color:'silver'}}>{days.format('D')}</span>
+                      </td>
+                  );
+                }else{
+                  return(
+                      <td key={index}>
+                        <span>{days.format('D')}</span>
+                      </td>
+                  );
+                }
+              })
+        }
+      </tr>);
+  }
+  return result;
+}
+
+  return (
+    <>
+    <HeaderFrame>
+         <Year onClick={handleYearClick}>{today.format('YYYY년')}</Year>
+         <YearScrollBar visible={isYearScrollBarVisible}>
+                {yearRange.map((year) => (
+                    <YearOption onClick={() => { 
+                      setMoment(getMoment.clone().year(year));
+                    }}
+                    key={year}>
+                        {year}
+                    </YearOption>
+                ))}
+            </YearScrollBar>
+          <LeftMonth onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
+          <Month>{today.format('MM월')}</Month>
+          <RightMonth onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
+          <MonthList>
+            {monthslist.map((month) => (
+              <MonthButton 
+                onClick={() => { 
+                  setMoment(getMoment.clone().month(month - 1));
+                }}
+                key={month}
+              >
+                {month}
+              </MonthButton>
+            ))}
+          </MonthList>
+          <Link to='/login'>
+          <ProfileFrame>
+                <ProfileImg></ProfileImg>
+            </ProfileFrame>
+          </Link>
+    </HeaderFrame>
+
+      <Cal_Container>
+            <tr>
+              <th className='sun'><Day>일</Day></th>
+              <th><Day>월</Day></th>
+              <th><Day>화</Day></th>
+              <th><Day>수</Day></th>
+              <th><Day>목</Day></th>
+              <th><Day>금</Day></th>
+              <th className='sat'><Day>토</Day></th>
+            </tr>
+            {calendarArr()}
+      </Cal_Container>
+    </>
+  )
+}
 
 export default Calendar;
