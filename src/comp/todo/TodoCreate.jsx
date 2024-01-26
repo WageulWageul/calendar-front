@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import {ReactComponent as CloseIcon} from '../../assets/icon/Close.svg';
 
 function TodoCreate(props) {
@@ -13,10 +12,10 @@ function TodoCreate(props) {
             <DateFrame>
                     <TodoDate>2024 3월 4일</TodoDate>
                     <TodoTime>시간 :  09 : 30</TodoTime>
-                </DateFrame>
-                <TodoTitle/>
-                <TodoMemo/>
-                <TodoSubmit onClick={() => window.location.replace("/")}>확인</TodoSubmit>
+            </DateFrame>
+            <TodoTitle/>
+            <TodoMemo/>
+            <TodoSubmit onClick={() => window.location.replace("/")}>확인</TodoSubmit>
             </TodoFrame>
         </TodoBack>
 
@@ -75,6 +74,8 @@ const TodoTitle = styled.input`
     border-radius : 3em;
     background-color:#E6E7F0;
     border : none;
+    padding : 0em 1em;
+    font-size: 1em;
     `;
 
 const TodoMemo = styled.input`
@@ -83,6 +84,8 @@ const TodoMemo = styled.input`
     border-radius : 3em;
     background-color:#E6E7F0;
     border : none;
+    padding : 0em 1em;
+    font-size: 1em;
     `;
 
 const TodoSubmit = styled.div`

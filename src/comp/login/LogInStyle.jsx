@@ -6,13 +6,13 @@ const LoginStyle = {
         height: '100vh',
     },
     imageContainer: {
-        marginLeft: '10px', //글과 그림 사이의 간격
+        marginLeft: '10px',
+         //글과 그림 사이의 간격
     },
     image: {
         width: '800px', 
         height: '800px',
         objectFit: 'cover', //이미지 크기 조정
-        height: '100vh',
     },
     textContainer: {
         maxWidth: '800px', 
@@ -24,6 +24,7 @@ const LoginStyle = {
         marginBottom: '30px',
         borderRadius: '10px',
         border: 'none',
+        paddingLeft:'1em',
     },
     textStyle: {
         color: '#2F3367',
