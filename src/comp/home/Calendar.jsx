@@ -11,18 +11,13 @@ import TodoCreate from '../todo/TodoCreate';
 const Cal_Container = styled.table`
   width: 100%;
   text-align: center;  
-  font-size : 2em;
-  height : 80%;
-
+  font-size : 2rem;
+  height : 40vw;
+  line-height: 2em;
   & > tbody > tr > td {
     border-radius : 3em;
   }
-
-  }
   
-  @media (max-width:1200px){
-    width: 100vw;
-  }
   th.sun {
     color: #F85959;
   }
@@ -31,57 +26,69 @@ const Cal_Container = styled.table`
   }
 `
 const Year = styled.div`
-    font-size : 6em;
-    font-weight : 700; 
+    font-size : 8vw;
+    font-weight : 600;
     color : #2F3367;
     margin-right : 0.25em;
+    white-space: nowrap;
+    @media (max-width:1150px){
+      font-size : 9.5vw;
+    }
     `;
 
 const Month = styled.div`
     display : flex;
     align-items: center;
-    font-size : 2.5em;
+    font-size : 3vw;
     font-weight : 500;
     color : #2F3367;
-   
+    white-space: nowrap;
+
+    @media (max-width:1150px){
+      font-size : 5vw;
+    }
     `;
-const Day = styled.span`
+
+const MonthButton = styled.div`
+    justify-content: center;
+    font-weight: 600;
+    font-size : 2.5em;
+    color : #2F3367;
+    border-radius : 3em;
+    margin : 0.25em 0.65em ;
+    width : 6%;
+    @media screen and (max-width: 1150px) {
+      font-size : 2em;
+    }
+
+    &:hover {  /*마우스 올렸을때 스타일*/
+      background-color : #007DFA;
+      color : #FFFFFF;
+    }  
+    `;
+
+const Day = styled.span` /*이거 필요없음 -> 적용되는거 노트북상에서 안보임*/
   @media (max-width:550px){
     display: none
   }
-`
-
+  `
 const HeaderFrame = styled.div`
-
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    margin-bottom: 1em;
     `;
-
 
 const MonthList = styled.div`
     display : flex;
     flex-wrap : wrap;
     justify-content: center;
     text-align: center;  
-    width : 40%;
-    margin-left: 3em;
+    
     background-color:#F5F5F7;
     border-radius : 3em;
-    `;
-const MonthButton = styled.div`
-    justify-content: center;
-    font-weight: 600;
-    font-size : 2.2em;
-    color : #2F3367;
-    border-radius : 3em;
-    margin : 0.25em 0.65em ;
-    width : 6%;
-
-    &:hover {
-      background-color : #007DFA;
-      color : #FFFFFF;
+    @media screen and (max-width: 1150px) {
+      width: 100%;
     }
     `;
 
@@ -90,7 +97,7 @@ const ProfileFrame = styled.div`
     background-color:#F5F5F7;
     border-radius: 50%;
     padding: 0.5em;
-    margin-left: 3em;
+    
     `;
 
   const YearScrollBar = styled.div`
@@ -101,10 +108,8 @@ const ProfileFrame = styled.div`
     margin-top: 12em;
     margin-right: 72em;
     padding: 0.5em;
-
     max-height: 80px; 
     overflow-y: auto;
-
     `;
 
 const YearOption = styled.div`
@@ -114,6 +119,38 @@ const YearOption = styled.div`
     margin: 0.25em 0.65em;
     cursor: pointer;
     `;
+
+const ResponsiveHeaderFrame = styled(HeaderFrame)`
+    justify-content: space-between;
+    @media screen and (max-width: 1150px) {
+      flex-wrap: wrap;
+    }
+  `;
+
+const ResponsiveMonthList = styled(MonthList)`
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  
+  @media screen and (max-width: 1150px) {
+    order: 3; /* MonthList를 마지막으로 배치 */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 1em;
+    ${MonthButton} {
+      width: 100%;
+      margin: 0.25em 0.65em;
+    }
+  }
+`;
+  
+  const ResponsiveCalendarContainer = styled(Cal_Container)`
+    @media screen and (max-width: 1150px) {
+      order: 4; /* CalendarContainer를 마지막으로 배치 */
+    }
+  `;
+
 
 
 function Calendar(props){
@@ -170,11 +207,12 @@ const calendarArr=()=>{
   return result;
 }
 
-  return (
-    <>
-    <HeaderFrame>
-         <Year onClick={handleYearClick}>{today.format('YYYY년')}</Year>
-         <YearScrollBar visible={isYearScrollBarVisible}>
+return (
+  <>
+    <ResponsiveHeaderFrame>
+      <div style={{ display: 'flex', alignItems: 'center', marginRight: '20px' }}>
+        <Year onClick={handleYearClick}>{today.format('YYYY년')}</Year>
+        <YearScrollBar visible={isYearScrollBarVisible}>
                 {yearRange.map((year) => (
                     <YearOption onClick={() => { 
                       setMoment(getMoment.clone().year(year));
@@ -184,11 +222,14 @@ const calendarArr=()=>{
                     </YearOption>
                 ))}
             </YearScrollBar>
-          <LeftMonth onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
-          <Month>{today.format('MM월')}</Month>
-          <RightMonth onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
-          <MonthList>
-            {monthslist.map((month) => (
+            <div style={{ display: 'flex', alignItems: 'center', marginRight: '3px' }}>
+            <LeftMonth onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
+            <Month>{today.format('MM월')}</Month>
+            <RightMonth onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
+            </div>
+        </div>
+        <ResponsiveMonthList>
+        {monthslist.map((month) => (
               <MonthButton 
                 onClick={() => { 
                   setMoment(getMoment.clone().month(month - 1));
@@ -198,28 +239,29 @@ const calendarArr=()=>{
                 {month}
               </MonthButton>
             ))}
-          </MonthList>
-          <Link to='/login'>
+        </ResponsiveMonthList>
+        <Link to='/login'>
           <ProfileFrame>
                 <ProfileImg></ProfileImg>
             </ProfileFrame>
           </Link>
-    </HeaderFrame>
-
-      <Cal_Container>
+    </ResponsiveHeaderFrame>
+    <ResponsiveCalendarContainer>
+        <Cal_Container>
             <tr>
-              <th className='sun'><Day>일</Day></th>
-              <th><Day>월</Day></th>
-              <th><Day>화</Day></th>
-              <th><Day>수</Day></th>
-              <th><Day>목</Day></th>
-              <th><Day>금</Day></th>
-              <th className='sat'><Day>토</Day></th>
-            </tr>
-            {calendarArr()}
-      </Cal_Container>
-    </>
-  )
+                  <th className='sun'><Day>일</Day></th>
+                  <th><Day>월</Day></th>
+                  <th><Day>화</Day></th>
+                  <th><Day>수</Day></th>
+                  <th><Day>목</Day></th>
+                  <th><Day>금</Day></th>
+                  <th className='sat'><Day>토</Day></th>
+                </tr>
+                {calendarArr()}
+        </Cal_Container>
+    </ResponsiveCalendarContainer>
+  </>
+)
 }
 
 export default Calendar;

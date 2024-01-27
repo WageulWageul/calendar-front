@@ -8,7 +8,6 @@ export const Container = styled.div`
 
   @media screen and (max-width:768px){
     flex-direction: column;
-    
   }
 `;
 
@@ -23,7 +22,6 @@ export const ImageContainer = styled.div`
 `;
 
 export const Image = styled(Mascot)`
-  
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -39,12 +37,11 @@ export const TextContainer = styled.div`
 
 export const FormInput = styled.input`
   height: 60px;
-  width: 400px;
+  width: 25rem;
   background-color: #f5f5f7;
   margin-bottom: 30px;
   border-radius: 10px;
   border: none;
-  padding-left: 1em;
 `;
 
 export const TextStyle = styled.h1`
@@ -52,7 +49,7 @@ export const TextStyle = styled.h1`
 `;
 
 export const LogInButton = styled.button`
-  width: 150px;
+  width: 9rem;
   height: 67px;
   background-color: #007dfa;
   margin-bottom: 30px;
@@ -60,16 +57,20 @@ export const LogInButton = styled.button`
   border: none;
   color: white;
   font-size: 20px;
+  margin-left: 16rem;
+
   @media screen and (max-width:768px){
-    width: 400px;
+    width: 25rem;
+    margin-left: 0;
   }
 `;
 
 export const SNSButton = styled.button`
-  width: 195px;
+  width: 13rem;   /*width: 195px;*/
   height: 54px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border-radius: 5px;
   border: none;
   font-size: 1em;
+
 `;
