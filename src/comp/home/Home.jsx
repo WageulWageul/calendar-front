@@ -4,20 +4,19 @@ import Calendar from './Calendar';
 import { ReactComponent as Plus } from '../../assets/icon/Plus.svg';
 import TodoCreate from '../todo/TodoCreate';
 
-
-
-const Wrapper = styled.div`
+const BackgroundColor = styled.div`
     display: flex;
     width:100%;
     height:100vh;
-    background-color:#E3E3E3`;
+    background-color:#E3E3E3;
+    `;
 
 const InnerWrapper = styled.div`
-    width:100%;
+    width: 100%;
     border-radius : 3em;
     background-color:#ffffff;
-    margin:1em;
-    padding:2em;
+    margin: 1rem;
+    padding: 1rem;
     `;
 
 const PlusButton = styled.div`
@@ -45,15 +44,15 @@ function Home(props) {
     
 
     return (
-        <Wrapper>
+        <BackgroundColor>
             {renderTodoPlus()}
-            <InnerWrapper>
-                <Calendar></Calendar>
-            </InnerWrapper>
             <PlusButton onClick={() => handlePlus(<TodoCreate/>)}>
                 <Plus/>
             </PlusButton>
-        </Wrapper>
+            <InnerWrapper>
+                <Calendar/>
+            </InnerWrapper>
+        </BackgroundColor>
     )
 }
 

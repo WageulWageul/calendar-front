@@ -47,11 +47,12 @@ const TodoFrame = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center; 
-    width:25%;
+    width:300px;
     height: 70%;
     border-radius : 3em;
     background-color:#ffffff;
     padding: 3em 2.5em;
+    
     `;
 
 const DateFrame = styled.div`

@@ -68,35 +68,32 @@ const onSubmit = (e) => {
             />
           </label>
           <br />
-          <t.SNSButton
-            onClick={handleKakaoLogin}
-            style={{ backgroundColor: '#FEE500', marginRight: '10px' }}
-          >
-            <Kakao style={{ float: 'left' }} />
-            카카오 로그인
-          </t.SNSButton>
-          <t.SNSButton
-            onClick={handleNaverLogin}
-
-            style={{ backgroundColor: '#03C75A' ,color: '#ffffff'}}
-          >
-          <Naver style={{ float: 'left', }} />
-
-            네이버 로그인
-          </t.SNSButton>
+          <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '25rem',margin: '0 auto', flexDirection: 'row' }}>
+            <t.SNSButton
+              onClick={handleKakaoLogin}
+              style={{ backgroundColor: '#FEE500', marginRight: '10px' }}
+            >
+              <Kakao style={{ float: 'left' }} />
+              카카오 로그인
+            </t.SNSButton>
+            <t.SNSButton
+              onClick={handleNaverLogin}
+              style={{ backgroundColor: '#03C75A' ,color: '#ffffff'}}
+            >
+            <Naver style={{ float: 'left' }} />
+              네이버 로그인
+            </t.SNSButton>
+          </div>
           <br />
-
-            <div style={{ textAlign: 'right' }}>
             <Link to="/">
               <t.LogInButton type="submit">로그인</t.LogInButton>
             </Link>
-            </div>
-         
+
         </form>
-        <hr style={{ color: '#ECECF0', marginRight: '10%' }} />
+        <hr style={{ color: '#ECECF0', marginRight: '4%' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p style={{ textAlign: 'left', color: '#2F3367' }}>아이디가 없으신가요</p>
-          <Link to='/register' style={{ textDecoration: "none", marginRight:'10%'}}>
+          <Link to='/register' style={{ textDecoration: "none", marginRight:'4%'}}>
           <p style={{ textAlign: 'right', color: '#007DFA'}}>회원가입하기!</p>
           </Link>
         </div>
