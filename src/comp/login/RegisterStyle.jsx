@@ -4,26 +4,26 @@ import { ReactComponent as Mascot } from '../../assets/img/Mascot.svg';
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100vh;
 
   @media screen and (max-width:768px){
     flex-direction: column;
-  }
+      }
 `;
 
 export const ImageContainer = styled.div`
-  margin-left: 10px;
   @media screen and (max-width:768px){
     display: flex;
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; 
+    justify-content: center; 
     height: 100vh;
   }
 `;
 
 export const Image = styled(Mascot)`
-  width: 100%;
-  height: 100%;
+    width: 100vh;
+  height: 100vh;
   object-fit: cover;
   @media screen and (max-width:768px){
     width: 60%;
@@ -40,9 +40,10 @@ export const FormInput = styled.input`
   width: 25rem;
   background-color: #f5f5f7;
   margin-bottom: 30px;
+  padding-left: 1em;
   border-radius: 10px;
   border: none;
-`;
+  `;
 
 export const TextStyle = styled.h1`
   color: #2f3367;
