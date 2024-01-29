@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import {ReactComponent as CloseIcon} from '../../assets/icon/Close.svg';
 
 function TodoCreate(props) {

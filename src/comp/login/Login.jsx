@@ -8,11 +8,12 @@ import { ReactComponent as Naver } from '../../assets/img/naver.svg';
 
 function Login(props) {
   const [userData, setUserData] = useState([]);
-  const [pw, setPw] = useState('');
   const [email, setEmail] = useState('');
+  const [pw, setPw] = useState("");
+  
 
 
-  const onChangeEmail = (e) => {
+const onChangeEmail = (e) => {
     setEmail(e.target.value);
 };
 const onChangePw = (e) => {
@@ -39,6 +40,21 @@ const onSubmit = (e) => {
   const handleNaverLogin = (e) => {
     // 처리
   };
+
+  const handleLogin = () => {
+    if (email=== "jiminseong@gachon.ac.kr" && pw === "202237792") {
+        window.location.replace("/")
+    }
+    if (email === "jiminseong@gachon.ac.kr" && pw !== "202237792"){
+        alert("비밀번호가 옳지 않습니다.");
+    }
+    if (email !== "jiminseong@gachon.ac.kr" && pw === "202237792"){
+        alert("아이디가 옳지 않습니다.");
+    }
+    if (email !== "jiminseong@gachon.ac.kr" && pw !== "202237792"){
+        alert("아이디와 비밀번호가 옳지 않습니다.");
+    }
+};
 
   return (
     <t.Container>
@@ -85,9 +101,7 @@ const onSubmit = (e) => {
             </t.SNSButton>
           </div>
           <br />
-            <Link to="/">
-              <t.LogInButton type="submit">로그인</t.LogInButton>
-            </Link>
+              <t.LogInButton type="submit" onClick={handleLogin}>로그인</t.LogInButton>
 
         </form>
         <hr style={{ color: '#ECECF0', marginRight: '4%' }} />
