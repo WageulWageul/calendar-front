@@ -1,12 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as CloseIcon} from '../../assets/icon/Close.svg';
+import axios from 'axios';
 
-function TodoCreate(props) {
+function TodoCreate( element,setComplete,) {
 
 const [userTodo, setUserTodo] = useState([]);
 const [title, setTitle] = useState("");
 const [memo, setMemo] = useState("");
+
+
+//리스트객체
+const [todoList, setList] = useState([{
+    id: '',
+    title: '',
+    memo: '',
+    date: '',
+    day:''
+}]);
+// 백엔드단에서 리스트 객체를 가져오는 부분
+useEffect(() => {
+    axios.get("/todo/list")
+        .then(res => setList(res.data.todoList))
+        .catch(error => console.log(error))
+
+}, []);
+
 
     const onWriteTitle = (e) => {
         setTitle(e.target.value);
@@ -14,6 +33,7 @@ const [memo, setMemo] = useState("");
     const onWriteMemo = (e) => {
         setMemo(e.target.value);
     };
+
 
 const onSubmit = (e) => {
     e.preventDefault();
@@ -31,9 +51,9 @@ const onSubmit = (e) => {
     }
     else{
         alert("제목 : " + title + "메모 : " + memo);
-        window.location.replace("/");
         setTitle("");
         setMemo("");
+        window.location.replace("/");
         console.log({userTodo});
     }
     
