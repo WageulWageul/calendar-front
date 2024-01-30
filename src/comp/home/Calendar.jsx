@@ -12,7 +12,7 @@ const Cal_Container = styled.table`
   width: 100%;
   text-align: center;  
   font-size : 2rem;
-  height : 40vw;
+  height :100%;
   line-height: 2em;
   & > tbody > tr > td {
     border-radius : 3em;
@@ -43,7 +43,6 @@ const Month = styled.div`
     font-weight : 500;
     color : #2F3367;
     white-space: nowrap;
-
     @media (max-width:1150px){
       font-size : 5vw;
     }
