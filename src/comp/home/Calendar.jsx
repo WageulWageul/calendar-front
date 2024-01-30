@@ -50,17 +50,15 @@ const Month = styled.div`
     `;
 
 const MonthButton = styled.div`
-    justify-content: center;
     font-weight: 600;
     font-size : 2.5em;
     color : #2F3367;
     border-radius : 3em;
     margin : 0.25em 0.65em ;
-    width : 6%;
+    width : 90%;
     @media screen and (max-width: 1150px) {
       font-size : 2em;
     }
-
     &:hover {  /*마우스 올렸을때 스타일*/
       background-color : #007DFA;
       color : #FFFFFF;
