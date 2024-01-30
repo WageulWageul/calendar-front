@@ -26,7 +26,17 @@ const onSubmit = (e) => {
             },
         ];
     });
-    console.log({userTodo});
+    if (title === "" && memo === ""){
+        alert("내용을 입력하세요");
+    }
+    else{
+        alert("제목 : " + title + "메모 : " + memo);
+        window.location.replace("/");
+        setTitle("");
+        setMemo("");
+        console.log({userTodo});
+    }
+    
 };
     return (
         <TodoBack>
@@ -49,7 +59,7 @@ const onSubmit = (e) => {
                 value={memo} 
                 onChange={onWriteMemo}
                 />
-                <TodoSubmit onClick={onSubmit} >확인</TodoSubmit>
+                <TodoSubmit onClick={onSubmit}>확인</TodoSubmit>
             </TodoFrame>
         </TodoBack>
 
@@ -118,7 +128,8 @@ const TodoMemo = styled.textarea`
     border-radius : 3em;
     background-color:#E6E7F0;
     border : none;
-    padding : 1em;
+    padding : 1.5em;
+    resize: none;
     `;
 
 const TodoSubmit = styled.div`
