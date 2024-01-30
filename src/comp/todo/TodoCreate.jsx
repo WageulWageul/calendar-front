@@ -3,6 +3,31 @@ import styled from 'styled-components';
 import {ReactComponent as CloseIcon} from '../../assets/icon/Close.svg';
 
 function TodoCreate(props) {
+
+const [userTodo, setUserTodo] = useState([]);
+const [title, setTitle] = useState("");
+const [memo, setMemo] = useState("");
+
+    const onWriteTitle = (e) => {
+        setTitle(e.target.value);
+    };
+    const onWriteMemo = (e) => {
+        setMemo(e.target.value);
+    };
+
+const onSubmit = (e) => {
+    e.preventDefault();
+    setUserTodo((userTodoData) => {
+        return [
+            ...userTodoData,
+            {
+                title: {title},
+                memo: {memo},
+            },
+        ];
+    });
+    console.log({userTodo});
+};
     return (
         <TodoBack>
             <TodoFrame>
@@ -13,9 +38,18 @@ function TodoCreate(props) {
                     <TodoDate>2024 3월 4일</TodoDate>
                     <TodoTime>시간 :  09 : 30</TodoTime>
                 </DateFrame>
-                <TodoTitle/>
-                <TodoMemo/>
-                <TodoSubmit onClick={() => window.location.replace("/")}>확인</TodoSubmit>
+                <TodoTitle
+                placeholder="제목"
+                type="text" 
+                value={title} 
+                onChange={onWriteTitle}
+                />
+                <TodoMemo
+                type="text" 
+                value={memo} 
+                onChange={onWriteMemo}
+                />
+                <TodoSubmit onClick={onSubmit} >확인</TodoSubmit>
             </TodoFrame>
         </TodoBack>
 
@@ -74,15 +108,17 @@ const TodoTitle = styled.input`
     height : 10%;
     border-radius : 3em;
     background-color:#E6E7F0;
+    padding-left : 1em;
     border : none;
     `;
 
-const TodoMemo = styled.input`
+const TodoMemo = styled.textarea`
     width: 100%;    
     height : 50%;
     border-radius : 3em;
     background-color:#E6E7F0;
     border : none;
+    padding : 1em;
     `;
 
 const TodoSubmit = styled.div`
