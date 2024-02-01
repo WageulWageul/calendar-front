@@ -41,16 +41,16 @@ const onSubmit = (e) => {
  
 
   const handleLogin = () => {
-    if (email=== "jiminseong@gachon.ac.kr" && pw === "202237792") {
+    if (email=== "a" && pw === "1") {
         window.location.replace("/")
     }
-    if (email === "jiminseong@gachon.ac.kr" && pw !== "202237792"){
+    if (email === "a" && pw !== "1"){
         alert("비밀번호가 옳지 않습니다.");
     }
-    if (email !== "jiminseong@gachon.ac.kr" && pw === "202237792"){
+    if (email !== "a" && pw === "1"){
         alert("아이디가 옳지 않습니다.");
     }
-    if (email !== "jiminseong@gachon.ac.kr" && pw !== "202237792"){
+    if (email !== "a" && pw !== "1"){
         alert("아이디와 비밀번호가 옳지 않습니다.");
     }
 };

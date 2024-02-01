@@ -10,14 +10,15 @@ import { ReactComponent as ProfileImg } from '../../assets/img/Profile.svg';
 
 const Cal_Container = styled.table`
   width: 100%;
+  height : 100%;
+  
   text-align: center;  
   font-size : 2rem;
-  height :100%;
+  
   line-height: 2em;
   & > tbody > tr > td {
     border-radius : 3em;
   }
-  
   th.sun {
     color: #F85959;
   }
@@ -43,10 +44,13 @@ const Month = styled.div`
     font-weight : 500;
     color : #2F3367;
     white-space: nowrap;
+  
     @media (max-width:1150px){
       font-size : 5vw;
     }
     `;
+
+
 
 const MonthButton = styled.div`
     font-weight: 600;
@@ -141,12 +145,7 @@ const ResponsiveMonthList = styled(MonthList)`
     }
   }
 `;
-  
-  const ResponsiveCalendarContainer = styled(Cal_Container)`
-    @media screen and (max-width: 1150px) {
-      order: 4; /* CalendarContainer를 마지막으로 배치 */
-    }
-  `;
+
 
 
 
@@ -219,10 +218,10 @@ return (
                     </YearOption>
                 ))}
             </YearScrollBar>
-            <div style={{ display: 'flex', alignItems: 'center', marginRight: '3px' }}>
-            <LeftMonth onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
-            <Month>{today.format('MM월')}</Month>
-            <RightMonth onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
+            <div style={{ display: 'flex', alignItems: 'center'}}>
+                <LeftMonth style={{width:'30px',hight:'30px' }} onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}/>
+                <Month>{today.format('MM월')}</Month>
+                <RightMonth style={{width:'30px',hight:'30px' }} onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }}/>
             </div>
         </div>
         <ResponsiveMonthList>
@@ -243,8 +242,7 @@ return (
             </ProfileFrame>
           </Link>
     </ResponsiveHeaderFrame>
-    <ResponsiveCalendarContainer>
-        <Cal_Container>
+    <Cal_Container>
             <tr>
                   <th className='sun'><Day>일</Day></th>
                   <th><Day>월</Day></th>
@@ -255,8 +253,7 @@ return (
                   <th className='sat'><Day>토</Day></th>
                 </tr>
                 {calendarArr()}
-        </Cal_Container>
-    </ResponsiveCalendarContainer>
+    </Cal_Container>
   </>
 )
 }

@@ -6,8 +6,8 @@ import TodoCreate from '../todo/TodoCreate';
 
 const BackgroundColor = styled.div`
     display: flex;
-    width:100%;
-    height:100vh;
+    width: 100%; 
+    height: 100%;
     background-color:#E3E3E3;
     `;
 
