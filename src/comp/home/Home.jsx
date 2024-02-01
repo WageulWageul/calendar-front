@@ -12,6 +12,8 @@ const BackgroundColor = styled.div`
     `;
 
 const InnerWrapper = styled.div`
+    display:flex;
+    flex-direction: column;
     width: 100%;
     border-radius : 3em;
     background-color:#ffffff;
