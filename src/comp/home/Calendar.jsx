@@ -65,11 +65,7 @@ const MonthButton = styled.div`
     }  
     `;
 
-const Day = styled.span` /*이거 필요없음 -> 적용되는거 노트북상에서 안보임*/
-  @media (max-width:550px){
-    display: none
-  }
-  `
+
 const HeaderFrame = styled.div`
     display: flex;
     align-items: center;
@@ -247,13 +243,13 @@ return (
     <ResponsiveCalendarContainer>
         <Cal_Container>
             <tr>
-                  <th className='sun'><Day>일</Day></th>
-                  <th><Day>월</Day></th>
-                  <th><Day>화</Day></th>
-                  <th><Day>수</Day></th>
-                  <th><Day>목</Day></th>
-                  <th><Day>금</Day></th>
-                  <th className='sat'><Day>토</Day></th>
+                  <th className='sun'>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th className='sat'>토</th>
                 </tr>
                 {calendarArr()}
         </Cal_Container>
