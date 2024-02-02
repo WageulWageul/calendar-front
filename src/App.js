@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import Todo from './comp/todo/Todo';
 
-
 function App() {
   return (
     <div className="App">

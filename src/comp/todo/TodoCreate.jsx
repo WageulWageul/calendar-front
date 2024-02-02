@@ -1,63 +1,79 @@
 import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
 import {ReactComponent as CloseIcon} from '../../assets/icon/Close.svg';
+import TodoCalendar from './TodoCalendar';
+import styled from 'styled-components';
 import axios from 'axios';
+import moment from 'moment';
 
 function TodoCreate( element,setComplete,) {
+    const [userTodo, setUserTodo] = useState([]);
+    const [title, setTitle] = useState("");
+    const [memo, setMemo] = useState("");
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-const [userTodo, setUserTodo] = useState([]);
-const [title, setTitle] = useState("");
-const [memo, setMemo] = useState("");
+    //리스트객체
+    const [todoList, setList] = useState([{
+        id: '',
+        title: '',
+        memo: '',
+        date: '',
+        day:''
+    }]);
 
-
-//리스트객체
-const [todoList, setList] = useState([{
-    id: '',
-    title: '',
-    memo: '',
-    date: '',
-    day:''
-}]);
-// 백엔드단에서 리스트 객체를 가져오는 부분
-useEffect(() => {
-    axios.get("/todo/list")
-        .then(res => setList(res.data.todoList))
-        .catch(error => console.log(error))
-
-}, []);
-
+    // 백엔드단에서 리스트 객체를 가져오는 부분
+    useEffect(() => {
+        axios.get("/todo/list")
+            .then(res => setList(res.data.todoList))
+            .catch(error => console.log(error))
+    }, []);
 
     const onWriteTitle = (e) => {
         setTitle(e.target.value);
     };
+
     const onWriteMemo = (e) => {
         setMemo(e.target.value);
     };
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setUserTodo((userTodoData) => {
+            return [
+                ...userTodoData,
+                {
+                    title: {title},
+                    memo: {memo},
+                    date: selectedDate,
+                },
+            ];
+        });
+        if (title === "" && memo === ""){
+            alert("내용을 입력하세요");
+        }
+        else{
+            alert("제목 : " + title + "메모 : " + memo);
+            setTitle("");
+            setMemo("");
+            setSelectedDate(new Date());
+            window.location.replace("/");
+            console.log({userTodo});
+        }
+    };
 
-const onSubmit = (e) => {
-    e.preventDefault();
-    setUserTodo((userTodoData) => {
-        return [
-            ...userTodoData,
-            {
-                title: {title},
-                memo: {memo},
-            },
-        ];
-    });
-    if (title === "" && memo === ""){
-        alert("내용을 입력하세요");
-    }
-    else{
-        alert("제목 : " + title + "메모 : " + memo);
-        setTitle("");
-        setMemo("");
-        window.location.replace("/");
-        console.log({userTodo});
-    }
+    const openCalendar = () => {
+        setIsCalendarOpen(true);
+      };
     
-};
+      const closeCalendar = () => {
+        setIsCalendarOpen(false);
+      };
+    
+      const handleCalendarSelect = (date) => {
+        setSelectedDate(date);
+        closeCalendar();
+      };    
+
     return (
         <TodoBack>
             <TodoFrame>
@@ -65,24 +81,28 @@ const onSubmit = (e) => {
             <CloseIcon onClick={() => window.location.replace("/")} />
             </Header>
             <DateFrame>
-                    <TodoDate>2024 3월 4일</TodoDate>
-                    <TodoTime>시간 :  09 : 30</TodoTime>
-                </DateFrame>
-                <TodoTitle
+            <TodoDate onClick={openCalendar}>
+                {moment(selectedDate).format('YYYY년 MM월 DD일')}
+            </TodoDate>
+            <TodoTime>시간 :  09 : 30</TodoTime>
+            </DateFrame>
+            <TodoTitle
                 placeholder="제목"
                 type="text" 
                 value={title} 
                 onChange={onWriteTitle}
-                />
-                <TodoMemo
+            />
+            <TodoMemo
                 type="text" 
                 value={memo} 
                 onChange={onWriteMemo}
-                />
-                <TodoSubmit onClick={onSubmit}>확인</TodoSubmit>
+            />
+            <TodoSubmit onClick={onSubmit}>확인</TodoSubmit>
             </TodoFrame>
+            {isCalendarOpen && (
+             <TodoCalendar onSelectDate={handleCalendarSelect} />
+             )}
         </TodoBack>
-
     );
 }
 
@@ -115,7 +135,6 @@ const TodoFrame = styled.div`
     border-radius : 3em;
     background-color:#ffffff;
     padding: 3em 2.5em;
-    
     `;
 
 const DateFrame = styled.div`
